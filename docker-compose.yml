@@ -12,7 +12,7 @@ services:
       - MINIO_PASSWORD=minioadmin
       - MINIO_BUCKET=gcn
       - KAFKA_PRODUCER_BOOTSTRAP_SERVERS=kafka-server-generix-gcn:9092
-      - KAFKA_CONSUMER_GROUP_ID=GCN
+      - KAFKA_CONSUMER_GROUP_ID=GCN_CONNECTOR_TESTAPP
     networks:
       - gcn
 
