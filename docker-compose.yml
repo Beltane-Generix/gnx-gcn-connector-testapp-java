@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  gnx-gcn-connector-testapp:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    environment:
+      - MINIO_URL=http://minio-generix-gcn:9000
+      - MINIO_USERNAME=minioadmin
+      - MINIO_PASSWORD=minioadmin
+      - MINIO_BUCKET=gcn
+      - KAFKA_PRODUCER_BOOTSTRAP_SERVERS=kafka-server-generix-gcn:9092
+      - KAFKA_CONSUMER_GROUP_ID=GCN
+    networks:
+      - gcn
+
+networks:
+  gcn:
+    external: true
+    name: gcn

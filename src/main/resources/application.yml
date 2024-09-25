@@ -1,0 +1,16 @@
+minio:
+  url: ${MINIO_URL:http://minio:9000}
+  access:
+    username: ${MINIO_USERNAME:miniouser}
+    password: ${MINIO_PASSWORD:miniopass}
+  bucket:
+    name: ${MINIO_BUCKET:miniobucket}
+
+kafka:
+  producer:
+    bootstrap-servers: ${KAFKA_PRODUCER_BOOTSTRAP_SERVERS:kafka:9092}
+  consumer:
+    group-id: ${KAFKA_CONSUMER_GROUP_ID:consumer-group-id-1}
+
+application:
+  hostname: ${APPLICATION_HOSTNAME:gnx-gcn-connector-testapp-java}
