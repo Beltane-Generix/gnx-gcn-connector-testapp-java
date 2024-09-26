@@ -1,0 +1,43 @@
+name: Build and push Docker image
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+
+permissions:
+  packages: write
+  contents: write
+
+jobs:
+  build_and_push_image:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.ROBOT_PAT }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: generix-beltane-robot-nonprod
+          password: ${{ secrets.ROBOT_PAT }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile
+          build-args: |
+            GITHUB_ACTOR=generix-beltane-robot-nonprod
+            GITHUB_TOKEN=${{ secrets.ROBOT_PAT }}
+          labels: org.opencontainers.image.source=https://github.com/beltane-generix/gnx-gcn-connector-testapp-java
+          tags: ghcr.io/beltane-generix/generix-gcn-connector-testapp-java:${{ github.event.inputs.version }}
+          push: true
