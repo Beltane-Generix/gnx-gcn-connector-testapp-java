@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar /opt/app/gnx-gcn-connector-testapp-java.jar
+java -jar /opt/app/gnx-gcn-connector.jar
