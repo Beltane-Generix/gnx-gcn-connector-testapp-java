@@ -36,6 +36,6 @@ jobs:
           build-args: |
             GITHUB_ACTOR=generix-beltane-robot-nonprod
             GITHUB_TOKEN=${{ secrets.ROBOT_PAT }}
-          labels: org.opencontainers.image.source=https://github.com/beltane-generix/${{ github.repository }}
-          tags: ghcr.io/beltane-generix/${{ github.repository }}:${{ github.event.inputs.version }}
+          labels: org.opencontainers.image.source=https://github.com/${{ github.repository }}
+          tags: ghcr.io/${{ github.repository }}:${{ github.event.inputs.version }}
           push: true
