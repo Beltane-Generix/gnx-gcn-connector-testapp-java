@@ -39,5 +39,5 @@ jobs:
             GITHUB_ACTOR=generix-beltane-robot-nonprod
             GITHUB_TOKEN=${{ secrets.ROBOT_PAT }}
           labels: org.opencontainers.image.source=https://github.com/beltane-generix/gnx-gcn-connector-testapp-java
-          tags: ghcr.io/beltane-generix/generix-gcn-connector-testapp:${{ github.event.inputs.version }}
+          tags: ghcr.io/beltane-generix/generix-gcn-connector-testapp-java:${{ github.event.inputs.version }}
           push: true
