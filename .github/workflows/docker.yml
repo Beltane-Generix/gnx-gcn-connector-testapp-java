@@ -3,8 +3,8 @@ name: Build and push Docker image
 on:
   workflow_dispatch:
     inputs:
-      jira_ticket:
-        description: 'Jira ticket'
+      version:
+        description: 'Docker image version'
         required: true
 
 permissions:
@@ -30,10 +30,6 @@ jobs:
           username: generix-beltane-robot-nonprod
           password: ${{ secrets.ROBOT_PAT }}
 
-      -   name: Get current timestamp
-          id: timestamp
-          run: echo "TIMESTAMP=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
-
       - name: Build and push image
         uses: docker/build-push-action@v5
         with:
@@ -43,5 +39,5 @@ jobs:
             GITHUB_ACTOR=generix-beltane-robot-nonprod
             GITHUB_TOKEN=${{ secrets.ROBOT_PAT }}
           labels: org.opencontainers.image.source=https://github.com/beltane-generix/gnx-gcn-connector-testapp-java
-          tags: ghcr.io/beltane-generix/generix-gcn-connector:${{ github.event.inputs.jira_ticket }}-${{ env.TIMESTAMP }}
+          tags: ghcr.io/beltane-generix/generix-gcn-connector:${{ github.event.inputs.version }}
           push: true
