@@ -1,8 +1,13 @@
 FROM maven:3.8.7-eclipse-temurin-11 as builder
 
+
+ARG GITHUB_ACTOR
+ARG GITHUB_TOKEN
+
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
+
 # Use ARG values in environment variables to ensure they're available in mvnw command
 ENV GH_USER=$GITHUB_ACTOR
 ENV GH_TOKEN=$GITHUB_TOKEN
@@ -19,9 +24,9 @@ RUN echo "<settings xmlns='http://maven.apache.org/SETTINGS/1.0.0' \
           <password>${GH_TOKEN}</password>\
         </server>\
       </servers>\
-    </settings>" > /opt/app/settings.xml
+    </settings>" > /app/settings.xml
 
-RUN mvn clean install -DskipTests --settings /opt/app/settings.xml
+RUN mvn clean install -DskipTests --settings /app/settings.xml
 
 FROM eclipse-temurin:11-jdk
 
