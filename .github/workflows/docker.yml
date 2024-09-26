@@ -7,9 +7,7 @@ on:
         description: 'Version'
         required: true
 
-permissions:
-  packages: write
-  contents: write
+permissions: write-all
 
 jobs:
   build_and_push_image:
@@ -38,6 +36,6 @@ jobs:
           build-args: |
             GITHUB_ACTOR=generix-beltane-robot-nonprod
             GITHUB_TOKEN=${{ secrets.ROBOT_PAT }}
-          labels: org.opencontainers.image.source=https://github.com/beltane-generix/gnx-gcn-connector-testapp-java
-          tags: ghcr.io/beltane-generix/generix-gcn-connector-testapp-java:${{ github.event.inputs.version }}
+          labels: org.opencontainers.image.source=https://github.com/beltane-generix/${{ github.repository }}
+          tags: ghcr.io/beltane-generix/${{ github.repository }}:${{ github.event.inputs.version }}
           push: true
