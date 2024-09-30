@@ -14,3 +14,12 @@ kafka:
 
 application:
   hostname: ${APPLICATION_HOSTNAME:gnx-gcn-connector-testapp-java}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
