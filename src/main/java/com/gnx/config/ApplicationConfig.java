@@ -1,6 +1,6 @@
 package com.gnx.config;
 
-import com.gnx.kafka.metrics.MetricsAspect;
+import com.gnx.metrics.MetricsAspect;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.prometheus.PrometheusMeterRegistry;
 import io.micrometer.prometheus.PrometheusConfig;

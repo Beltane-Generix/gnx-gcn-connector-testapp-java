@@ -45,7 +45,7 @@
         <dependency>
             <groupId>com.gnx</groupId>
             <artifactId>gnx-gcn-lib-connector</artifactId>
-            <version>v0.1.1</version>
+            <version>v0.1.1-dev-20241001073826</version>
         </dependency>
 
         <dependency>
